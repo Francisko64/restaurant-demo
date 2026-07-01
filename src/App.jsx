@@ -2,12 +2,14 @@ import { useState } from "react";
 import { dishes, deliveryInfo } from "./data";
 import Menu from "./components/Menu";
 import Cart from "./components/Cart";
+import MoodBar from "./components/MoodBar";
 import PaymentModal from "./components/PaymentModal";
 import "./App.css";
 
 export default function App() {
   const [cart, setCart] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedOrigins, setSelectedOrigins] = useState([]);
+  const [selectedVibes, setSelectedVibes] = useState([]);
   const [showPayment, setShowPayment] = useState(false);
 
   function addToCart(dish) {
@@ -16,6 +18,18 @@ export default function App() {
 
   function removeFromCart(id) {
     setCart(cart.filter((item) => item.id === id));
+  }
+
+  function toggleOrigin(origin) {
+    setSelectedOrigins((prev) =>
+      prev.includes(origin) ? prev.filter((o) => o !== origin) : [...prev, origin]
+    );
+  }
+
+  function toggleVibe(vibe) {
+    setSelectedVibes((prev) =>
+      prev.includes(vibe) ? prev.filter((v) => v !== vibe) : [...prev, vibe]
+    );
   }
 
   const cartCount = cart.length;
@@ -38,11 +52,18 @@ export default function App() {
         </div>
       </header>
 
+      <MoodBar
+        selectedOrigins={selectedOrigins}
+        selectedVibes={selectedVibes}
+        onToggleOrigin={toggleOrigin}
+        onToggleVibe={toggleVibe}
+      />
+
       <main className="app-main">
         <Menu
           dishes={dishes}
-          selectedCategory={selectedCategory}
-          onCategoryChange={setSelectedCategory}
+          selectedOrigins={selectedOrigins}
+          selectedVibes={selectedVibes}
           onAddToCart={addToCart}
         />
         <Cart cart={cart} onRemove={removeFromCart} onCheckout={() => setShowPayment(true)} />

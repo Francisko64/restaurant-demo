@@ -91,6 +91,50 @@ body {
   justify-content: center;
 }
 
+/* ─── Mood bar ────────────────────────────────────────── */
+.mood-bar {
+  position: sticky;
+  top: 64px;
+  z-index: 20;
+  margin: 20px 32px 28px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(232, 228, 223, 0.7);
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 2px 16px rgba(26, 39, 31, 0.08);
+}
+
+.mood-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mood-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1.5px solid #d8d4cf;
+  background: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1a271f;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.mood-chip:hover {
+  border-color: #00c1b2;
+}
+
 /* ─── Layout ──────────────────────────────────────────── */
 .app-main {
   display: flex;
@@ -100,8 +144,9 @@ body {
 /* ─── Menu ────────────────────────────────────────────── */
 .menu {
   flex: 1;
-  padding: 32px 40px;
+  padding: 12px 40px 32px;
   overflow-y: auto;
+  transition: background 0.3s ease;
 }
 
 .menu h2 {
@@ -110,37 +155,6 @@ body {
   letter-spacing: -0.5px;
   margin-bottom: 20px;
   color: #1a271f;
-}
-
-.category-filters {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  padding: 8px 20px;
-  border: 1.5px solid #d8d4cf;
-  border-radius: 4px;
-  background: white;
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s;
-  color: #1a271f;
-  letter-spacing: 0.1px;
-}
-
-.filter-btn:hover {
-  border-color: #00c1b2;
-  color: #00c1b2;
-}
-
-.filter-btn.active {
-  background: #00c1b2;
-  color: white;
-  border-color: #00c1b2;
 }
 
 .dish-grid {
@@ -236,8 +250,8 @@ body {
   flex-direction: column;
   gap: 16px;
   position: sticky;
-  top: 64px;
-  height: calc(100vh - 64px);
+  top: 212px;
+  height: calc(100vh - 212px);
   overflow-y: auto;
 }
 
